@@ -6,18 +6,19 @@ title: User Domain Model
 ---
 classDiagram
     User
-    User --> Email : composed of one to N
+    User --> Email : composed of N
     User --> PasswordReset : composed of one or none
     Email --> EmailConfirmation : composed of one or none
     User --> GardenMembership : refers to N
+    User --> CultivarSet : refers to N
     class User{
         username: string
-        emails: list of Emails
+        emails: set of Emails
         hashed_password: string
         is_verified: bool
         is_superuser: bool
-        memberships: zero to N GardenMembershipID
-        cultivar_sets: one to N CultivarSet
+        memberships: set of GardenMembership refs
+        cultivar_sets: set of CultivarSet refs
         created_at: datetime
     }
     class GardenMembership{
@@ -34,6 +35,9 @@ classDiagram
     class EmailConfirmation{
         confirmation_key: string
         created_at: datetime
+    }
+    class CultivarSet{
+        See Cultivars feature category
     }
 ```
 
