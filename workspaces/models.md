@@ -13,6 +13,8 @@ classDiagram
     Geometry --> Box
 
     class Workspace{
+        garden_ref: Garden ref
+        environment_ref: Environment ref
         name: string
         planting_areas: set of PlantingArea
     }

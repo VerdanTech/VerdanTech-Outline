@@ -9,16 +9,14 @@ classDiagram
     User --> Email : composed of N
     User --> PasswordReset : composed of one or none
     Email --> EmailConfirmation : composed of one or none
-    User --> GardenMembership : refers to N
-    User --> CultivarSet : refers to N
+    GardenMembership --> User : refers to one
+    CultivarCollection --> User : refers to one
     class User{
         username: string
         emails: set of Emails
         hashed_password: string
         is_verified: bool
         is_superuser: bool
-        memberships: set of GardenMembership refs
-        cultivar_sets: set of CultivarSet refs
         created_at: datetime
     }
     class GardenMembership{
@@ -36,7 +34,7 @@ classDiagram
         confirmation_key: string
         created_at: datetime
     }
-    class CultivarSet{
+    class CultivarCollection{
         See Cultivars feature category
     }
 ```
@@ -67,6 +65,6 @@ Superusers should be given access to any admin interfaces. Superusers should onl
 
 A user should be able to be a member of multiple gardens. Membership in ones own gardens and other gardens should be able to be managed by the user.
 
-## cultivar_sets
+## cultivar_collections
 
 A user should be able to create CultivarSets connected to their profile, and copy them to and from gardens.

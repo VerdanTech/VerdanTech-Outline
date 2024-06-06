@@ -7,81 +7,35 @@ title: Garden Domain Model
 classDiagram
     Garden
     Garden --> Creator : refers to one or none
-    Garden --> CultivarSet : refers to N
-    Garden --> Workspace : refers to N
-    Garden --> EnvironmentAttributeProfile 
-    VisibilityEnum --> Garden
-    EnvironmentAttributeProfile --> FrostDateProfile
-    Garden --> GardenMembership : composed of N  
-    GardenMembership --> Admin
-    GardenMembership --> Edit
-    GardenMembership --> View 
-    PermissionsEnum --> GardenMembership
+    Garden --> Environment : refers to one or none
+    Garden --> GardenMembership : composed of N
     class Garden{
-        key_id: string
+        key: string
         name: string
-        description: text
-        creator: one or none UserID
+        creator_ref: one or none User ref
         visibility: VisibilityEnum
-        admins: list of GardenMembership
-        editors: list of GardenMembership
-        viewers: list of GardenMembership
-        cultivar_sets: one to N CultivarSet
-        workspaces: one to N WorkspaceID
-        attributes: set of EnvironmentAttributeProfile
+        environment_ref: one or none Environment ref
+        memberships: set of GardenMembership
+        description: text
+        expired: bool
         created_at: datetime
     }
     class Creator{
         <<User>>
         See User feature category 
     }
-    class VisibilityEnum{
-        private
-        unlisted
-        public
-    }
     class GardenMembership{
-        inviter: one or none UserReference
-        user: one UserReference
-        garden: one GardenReference
-        permissions: PermissionsEnum
+        garden: one Garden ref
+        user_ref: one User ref
+        inviter_ref: one or none User ref
+        role: RoleEnum
+        accepted: bool
         favorite: bool
         created_at: date
 
     }
-    class Admin{
-        <<GardenMembership>>
-        permissions=admin
-    }
-    class Edit{
-        <<GardenMembership>>
-        permissions=edit
-    }
-    class View{
-        <<GardenMembership>>
-        permissions=view
-    }
-    class PermissionsEnum{
-        view
-        edit
-        admin
-    }
-    class CultivarSet{
-        See Cultivars feature category
-    }
-    class Workspace{
-        See Workspaces feature category
-    }
-    class EnvironmentAttributeProfile{
-
-    }
-    class FrostDateProfile{
-        <<EnvironmentAttributeProfile>>
-        first_frost_date: date
-        last_frost_date: date
-    }
-    class Widget{
-        
+    class Environment{
+        See the Environment feature category.
     }
 ```
 
@@ -89,7 +43,7 @@ classDiagram
 
 A Garden is an container model that contextualizes most other models in the application. While a Workspace is a representation of a physical space, a Garden is an environment for multiple Workspaces, a permissions system for multiple Users, and a set of references to CultivarSets.  
 
-## key_id
+## key
 
 A unique string id should be generated for each Garden, mostly for the purposes of URLs.
 
@@ -108,7 +62,7 @@ A Garden should be able to have these levels of visibility:
 - Unlisted: Edit permissions and up are restricted to invitees. Anyone with a link can view, but can't be found with a search.
 - Public: Edit permissions and up are restricted to invitees. Anyone with a link can view, and potentially find on the site without a link.
 
-## admins, editors, and viewers
+## memberships
 
 Gardens should delete themselves after a set amount of time if they have no admins, editors, or viewers. If all Admins leave, the oldest Edit GardenMembership should be promoted to Admin.
 
@@ -140,19 +94,19 @@ The last frost date is the expected last day in the year to have frost.
 
 GardenMembership models provide metadata for links between User and Garden models.
 
-## inviter
+## garden
 
-A GardenMembership should keep track of who created it. If the inviter and the user are the same, the inviter should be None. The deletion of the inviter should be of no consequence to the GardenMembership. 
+A GardenMembership should refer to only one Garden.
 
 ## user
 
 A GardenMembership should refer to only one main User.
 
-## garden
+## inviter
 
-A GardenMembership should refer to only one Garden.
+A GardenMembership should keep track of who created it. If the inviter and the user are the same, the inviter should be None. The deletion of the inviter should be of no consequence to the GardenMembership. 
 
-## permissions
+## role
 
 A GardenMembership should be able to grant these levels of access:
 - Admins:
