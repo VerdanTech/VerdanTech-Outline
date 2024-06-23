@@ -25,5 +25,6 @@ Each subfolder represents a feature category. Obviously, most features overlap, 
 
 Each subfolder contains one or more design documents. Currently, these documents can include:
 - **models.md** - A markdown document containing specifications for domain models. A domain model is a conceptual model designed to be intuitive by mirroring ways the users think about the problem space the application is trying to solve. Model descriptions should roughly pseudocode the required attributes of the backend implementations, and contain general descriptions of the behaviours, including relationships with other models.
+- **events.md** - A markdown document containing a list of commands and events.
 - **wireframes.md** - A markdown document containing descriptions of wireframes and the interactions between them.
 - **wireframes/** - Wireframes are rough sketches of the user interface. Currently, the Excalidraw application is used for its ability to save editable files directly into PNG format. The recommended way to edit these files is to use the [Visual Studio extension](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor) in VS Code or in the browser. For collaborative editing, the [web version](https://excalidraw.com/) can be used.

@@ -1,6 +1,6 @@
 # The Planner Feature Category
 
-The Planner feature category allows the creation of Agroplans, which are models which facilitate the organization of Plants into structured plans that can be swapped, modified, and subject to optimization. Plans can be generated with optimization strategies and objectives.
+The Planner feature category is the main user interface for viewing and modifying the bulk of the model state, including creating plants, recording observations, viewing planting calendars, and more.  
 
 See:
 - *[Planner Wireframes](wireframes.md)*

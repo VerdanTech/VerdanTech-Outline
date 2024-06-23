@@ -1,43 +1,47 @@
 # Planner - Wireframes
 
-The Planner wireframes allow:
-- Visualizing the planting windows of all Cultivars, which involves rendering a planting calendar and visualizing which blocks of time it is open for a cultivar to be planted inside, outside, etc.
-- Visualizing a 2D slice of workspaces at any given time, being able to shift forwards and backwards in time.
-- Creating and modifying Plants.
-- Creating and modifying Agroplans.
+The Planner pages are split into two groups:
+- *Verdagraph*: a combination of three different views of the model state, mainly Plants, PlantingWindows, and Actions.
+- *Workbook*: a list-like view of Actions optimized for assigning Actions among Users and using as a reference when carrying out tasks more conveninent than the Verdagraph.
 
-# Planting Calendar
+# Verdagraph
+
+The Verdagraph is split into three main views into the model state:
+- *Tree*: Displays model attributes into a directory-like tree structure, with the goal of simplicity and easy keyboard navigability.
+- *Calendar*: Displays model attributes into a grid-like temporal view, where models are organized as rows, and days are organized as columns.
+- *Layout*: Displays model attributes according to their spatial layout.
+
+All three of these windows are toggleable. They are supported by the following additional UI elements:
+- *Timeline Selector*: Allows selecting a range of dates easily with the mouse and keyboard. This range dictates which model elements are visible in the Tree and Calendar, with the center of the range being the "selected day" which controls the day displayed in the Layout.
+- *Toolbar*: A horizontal toolbar.
+- *Form* A reusable component for storing a list of active forms (ex. "Add Plant", "Record Observation"), allowing the resuse of functionality between Tree, Calendar, and Layout.
+
+![Verdagraph Structure Wireframe](./wireframes/verdagraph_structure.excalidraw.png)
+
+![Verdagraph Structure Filled Wireframe](./wireframes/verdagraph_structure_filled.excalidraw.png)
+
+## Tree
+
+![Tree Wireframe](./wireframes/tree.excalidraw.png)
 
 ## Calendar
 
 ![Calendar Wireframe](./wireframes/calendar.excalidraw.png)
 
-## Create
+## Layout
 
-![Create Wireframe](./wireframes/create.excalidraw.png)
+![Layout Wireframe](./wireframes/layout.excalidraw.png)
 
-# App Garden Context
+## Toolbar
 
-These frames exist outside of the context of a specific garden.
+![Toolbar Wireframe](./wireframes/toolbar.excalidraw.png)
 
-## Garden
+## Form
 
-Edit the Garden and its AttributeProfiles.
+![Form Wireframe](./wireframes/form.excalidraw.png)
 
-![Dashboard Wireframe](./wireframes/garden.excalidraw.png)
+## Timeline Selector
 
-## Dashboard
+![Timeline Selector Wireframe](./wireframes/timeline_selector.excalidraw.png)
 
-![Dashboard Wireframe](./wireframes/dashboard.excalidraw.png)
-
-## Members
-
-![Members Wireframe](./wireframes/members.excalidraw.png)
-
-## Metrics
-
-![Metrics Wireframe](./wireframes/metrics.excalidraw.png)
-
-## Chat
-
-![Chat Wireframe](./wireframes/chat.excalidraw.png)
+# Workbook
